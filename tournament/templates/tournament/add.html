@@ -1,0 +1,32 @@
+{% extends "tournament/base.html" %}
+
+{% block content %}
+    <div class="form" id="addForm">
+        <h2>Add New Tournament</h2>
+        <div class="error"><p>{{ form.non_field_errors.as_text }}</p></div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                <label for="id_tournamentName">Tournament Name</label>
+                {{ form.tournamentName }}
+                <sub>{{ form.tournamentName.errors.as_text }}</sub>
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_tournamentType">Tournament Type</label>
+                {{ form.tournamentType }}
+                <sub>{{ form.tournamentType.errors.as_text }}</sub>
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_entrants">Entrants</label>
+                {{ entrantFormset.management_form }}
+                <div class="entrant">
+                    {% for entrantForm in entrantFormset %}
+                        {{ entrantForm.name }}
+                        <sub>{{ entrantForm.errors.as_text }}</sub>
+                    {% endfor %}
+                </div>
+            </div>
+            <input type="submit" value="Add Tournament" />
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,144 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+ul.navList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li.navLeft {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+li.navRight {
+    float: right;
+    border-left: 1px solid #bbb;
+}
+
+li.navTitle {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    border-right: 1px solid #bbb;
+    text-decoration: none;
+}
+
+a.navAnchor {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a.navAnchor:hover {
+    background-color: #111;
+}
+
+table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-spacing: 20px; /* add a second if just space between borders.  1=all around, 2=between, outside */
+}
+
+table tr td {
+    text-align: center; 
+    vertical-align: middle
+}
+
+input[type=text], select {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=password], select {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=number], select {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.addCustom {
+    background-color: #008CBA;
+    text-decoration: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    padding: 4px;
+    display: inline-block;
+}
+
+div.form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+form div label {
+    display: block;
+}
+
+form div.fieldWrapper {
+    margin-bottom: 10px;
+    align-self: center;
+    display: block;
+}
+
+form div div {
+    margin-bottom: 0px;
+}
+
+form div sub {
+    display: block;
+}
+
+select.winner {
+    padding: 0px;
+    margin: 2px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+table.matchTable {
+    display: inline;
+}

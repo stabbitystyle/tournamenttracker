@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <script src="{% static 'tournament/d3.min.js' %}"></script>
+    <script src="{% static 'tournament/tournament.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'tournament/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>{% block title %}Tournament Tracker{% endblock %}</title>
+    <script src="{% static 'tournament/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'tournament/jquery.formset.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#addForm div .entrant').formset({
+            addText: 'Add Entrant',
+            addCssClass: 'addCustom',
+            deleteText: ''
+        });
+        })
+    </script>
+</head>
+
+<body>
+    <div id="navbar">
+        {% block navbar %}
+        <ul class='navList'>
+            <li class='navTitle'>Tournament Tracker</li>
+            <li class='navLeft'><a class='navAnchor' href="/">Home</a></li>
+            {% if user.is_authenticated %}<li class='navLeft'><a class='navAnchor' href="{% url 'tournament:add' %}">Add</a></li> {% endif %}
+            {% if not user.is_authenticated %}<li class='navRight'><a class='navAnchor' href="{% url 'useraccounts:login' %}">Login</a></li> {% endif %}
+            {% if not user.is_authenticated %}<li class='navRight'><a class='navAnchor' href="{% url 'useraccounts:signup' %}">Sign Up</a></li> {% endif %}
+            {% if user.is_authenticated %}<li class='navRight'><a class='navAnchor' href="{% url 'useraccounts:logout' %}">Logout</a></li> {% endif %}
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{% static 'tournament/d3.min.js' %}"></script>
+    <script src="{% static 'tournament/tournament.js' %}"></script>
+</body>
+</html>

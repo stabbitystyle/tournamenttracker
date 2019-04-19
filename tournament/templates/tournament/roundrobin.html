@@ -1,0 +1,66 @@
+{% extends "tournament/base.html" %}
+
+{% block content %}
+    <h2>{{ tournament.name }}</h2>
+    <table id="roundRobinTable">
+        <tr>
+            <th>Name</th>
+            <th>Wins</th> 
+            <th>Losses</th>
+            <th>Draws</th>
+        </tr>
+        {% for entrant in entrants %}
+            <tr>
+                <td>{{ entrant.name }}</td>
+                <td>{{ entrant.wins }}</td>
+                <td>{{ entrant.losses }}</td>
+                <td>{{ entrant.draws }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <form method="post">
+        {% for match in matches %}
+            {% csrf_token %}
+            {% ifchanged match.depth %}
+                </table>
+                <table class="matchTable">
+                    <tr>
+                        <th>ID</th>
+                        <th>Match</th>
+                        <th>Round</th>
+                        <th>Winner</th>
+                    </tr>
+            {% endifchanged %}
+            <tr>
+                <td>{{ match.id }}</td>
+                <td>{{ match.firstEntrant }} vs {{ match.secondEntrant }}</td>
+                <td>{{ match.depth | add:1 }}</td>
+                {% if match.winner == 0 %}
+                    <td>
+                        <select class="winner" name="{{ match.id }}">
+                            <option value="0"></option>
+                            <option value="1">{{ match.firstEntrant }}</option>
+                            <option value="2">{{ match.secondEntrant }}</option>
+                            <option value="3">Draw</option>
+                        </select>
+                    </td>
+                {% elif match.winner == 1 %}
+                    <td>{{ match.firstEntrant }}</td>
+                {% elif match.winner == 2 %}
+                    <td>{{ match.secondEntrant }}</td>
+                {% elif match.winner == 3 %}
+                    <td>Draw</td>
+                {% elif match.winner == 4 %}
+                    {% if match.firstEntrant %}
+                        <td>{{ match.firstEntrant }} (Bye)</td>
+                    {% else %}
+                        <td>{{ match.secondEntrant }} (Bye)</td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+        <div><input type="submit" value="Save Winners" /></div>
+    </form>
+    
+{% endblock %}

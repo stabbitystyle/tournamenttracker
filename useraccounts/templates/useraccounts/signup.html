@@ -1,0 +1,28 @@
+<!-- templates/signup.html -->
+{% extends "tournament/base.html" %}
+
+{% block content %}
+    <div class="form">
+        <h2>Sign Up</h2>
+        <div class="error"><p>{{ form.non_field_errors.as_text }}</p></div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                <label for="id_username">Username</label>
+                {{ form.username }}
+                <sub>{{ form.username.errors.as_text }}</sub>
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_password">Password</label>
+                {{ form.password1 }}
+                <sub>{{ form.password1.errors.as_text }}</sub>
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_password">Password Confirmation</label>
+                {{ form.password2 }}
+                <sub>{{ form.password2.errors.as_text }}</sub>
+            </div>
+            <input type="submit" value="Sign Up" />
+        </form>
+    </div>
+{% endblock %}

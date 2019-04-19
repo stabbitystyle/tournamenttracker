@@ -1,0 +1,26 @@
+{% extends "tournament/base.html" %}
+
+{% block content %}
+    {% if tournamentList %}
+        <table id="tournamentTable">
+            <tr>
+                <th>Name</th>
+                <th>Tournament Type</th>
+                <th>Number of Entrants</th>
+                <th>Last Modified</th>
+                <th>Delete?</th>
+            </tr>
+            {% for tournament in tournamentList %}
+                <tr>
+                    <td><a href="{% url 'tournament:display' tournament.id %}">{{ tournament.tournamentName }}</a></td>
+                    <td>{{ tournament.get_tournamentType_display }}</td>
+                    <td>{{ tournament.numberOfEntrants }}</td>
+                    <td>{{ tournament.lastUpdatedDate }}</td>
+                    <td><a href="{% url 'tournament:delete' tournament.id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No tournaments available.</p>
+    {% endif %}
+{% endblock %}
